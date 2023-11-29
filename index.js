@@ -68,8 +68,18 @@ function move(gameState) {
   }
 
   // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
-  // boardWidth = gameState.board.width;
-  // boardHeight = gameState.board.height;
+  boardWidth = gameState.board.width;
+  boardHeight = gameState.board.height;
+
+  if (myHead.x+1 > boardWidth) {
+    isMoveSafe.right = false;
+  } else if (myHead.x-1 < 0) {
+    isMoveSafe.left = false;
+  } else if (myHead.y+1 > boardHeight) {
+    isMoveSafe.up = false;
+  } else if (myHead.y-1 < 0) {
+    isMoveSafe.down = false;
+  }
 
   // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
   // myBody = gameState.you.body;
