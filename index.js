@@ -16,70 +16,90 @@ import runServer from './server.js';
 // and controls your Battlesnake's appearance
 // TIP: If you open your Battlesnake URL in a browser you should see this data
 function info() {
-  console.log("INFO");
+  console.log('INFO');
 
   return {
-    apiversion: "1",
-    author: "mohzfr",       // TODO: Your Battlesnake Username
-    color: "#28603a", // TODO: Choose color
-    head: "all-seeing",  // TODO: Choose head
-    tail: "nr-booster",  // TODO: Choose tail
-    version: "0.1"
+    apiversion: '1',
+    author: 'mohzfr', // TODO: Your Battlesnake Username
+    color: '#28603a', // TODO: Choose color
+    head: 'all-seeing', // TODO: Choose head
+    tail: 'nr-booster', // TODO: Choose tail
+    version: '0.1',
   };
 }
 
 // start is called when your Battlesnake begins a game
 function start(gameState) {
-  console.log("GAME START");
+  console.log('GAME START');
 }
 
 // end is called when your Battlesnake finishes a game
 function end(gameState) {
-  console.log("GAME OVER\n");
+  console.log('GAME OVER\n');
 }
 
 // move is called on every turn and returns your next move
 // Valid moves are "up", "down", "left", or "right"
 // See https://docs.battlesnake.com/api/example-move for available data
 function move(gameState) {
-
   let isMoveSafe = {
     up: true,
     down: true,
     left: true,
-    right: true
+    right: true,
   };
 
   // We've included code to prevent your Battlesnake from moving backwards
   const myHead = gameState.you.body[0];
   const myNeck = gameState.you.body[1];
 
-  if (myNeck.x < myHead.x) {        // Neck is left of head, don't move left
+  if (myNeck.x < myHead.x) {
+    // Neck is left of head, don't move left
     isMoveSafe.left = false;
-
-  } else if (myNeck.x > myHead.x) { // Neck is right of head, don't move right
+  } else if (myNeck.x > myHead.x) {
+    // Neck is right of head, don't move right
     isMoveSafe.right = false;
-
-  } else if (myNeck.y < myHead.y) { // Neck is below head, don't move down
+  } else if (myNeck.y < myHead.y) {
+    // Neck is below head, don't move down
     isMoveSafe.down = false;
-
-  } else if (myNeck.y > myHead.y) { // Neck is above head, don't move up
+  } else if (myNeck.y > myHead.y) {
+    // Neck is above head, don't move up
     isMoveSafe.up = false;
   }
 
   // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
   const boardWidth = gameState.board.width;
   const boardHeight = gameState.board.height;
-  console.log("Current Pos: (", myHead.x," ,", myHead.y, ")");
-  console.log("All Possible Moves:\nUp: ", isMoveSafe.up, "\nDown: ", isMoveSafe.down,"\nLeft: ", isMoveSafe.left, "\nRight: ", isMoveSafe.right);
-  if (myHead.x+1 > boardWidth) {
+  console.log('Current Pos: (', myHead.x, ' ,', myHead.y, ')');
+  console.log(
+    'All Possible Moves:\nUp: ',
+    isMoveSafe.up,
+    '\nDown: ',
+    isMoveSafe.down,
+    '\nLeft: ',
+    isMoveSafe.left,
+    '\nRight: ',
+    isMoveSafe.right
+  );
+  // if (myHead.x+1 > boardWidth) {
+  //   isMoveSafe.right = false;
+  // } else if (myHead.x-1 < 0) {
+  //   isMoveSafe.left = false;
+  // } else if (myHead.y+1 > boardHeight) {
+  //   isMoveSafe.up = false;
+  // } else if (myHead.y-1 < 0) {
+  //   isMoveSafe.down = false;
+  // }
+  if (myHead.x + 1 >= boardWidth) {
     isMoveSafe.right = false;
-  } else if (myHead.x-1 < 0) {
+  } else if (myHead.x - 1 < 0) {
     isMoveSafe.left = false;
-  } else if (myHead.y+1 > boardHeight) {
-    isMoveSafe.up = false;
-  } else if (myHead.y-1 < 0) {
+  }
+
+  if (myHead.y + 1 >= boardHeight) {
     isMoveSafe.down = false;
+  } else if (myHead.y - 1 < 0) {
+    isMoveSafe.up = false;
   }
 
   // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
@@ -89,10 +109,10 @@ function move(gameState) {
   // opponents = gameState.board.snakes;
 
   // Are there any safe moves left?
-  const safeMoves = Object.keys(isMoveSafe).filter(key => isMoveSafe[key]);
+  const safeMoves = Object.keys(isMoveSafe).filter((key) => isMoveSafe[key]);
   if (safeMoves.length == 0) {
     console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
-    return { move: "down" };
+    return { move: 'down' };
   }
 
   // Choose a random move from the safe moves
@@ -101,7 +121,7 @@ function move(gameState) {
   // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
   // food = gameState.board.food;
 
-  console.log(`MOVE ${gameState.turn}: ${nextMove}`)
+  console.log(`MOVE ${gameState.turn}: ${nextMove}`);
   return { move: nextMove };
 }
 
@@ -109,5 +129,5 @@ runServer({
   info: info,
   start: start,
   move: move,
-  end: end
+  end: end,
 });
