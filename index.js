@@ -68,6 +68,8 @@ function move(gameState) {
   }
 
   // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
+  console.log(gameState.board.width);
+  console.log(gameState.board.height);
   boardWidth = gameState.board.width;
   boardHeight = gameState.board.height;
 
