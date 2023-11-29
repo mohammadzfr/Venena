@@ -90,13 +90,13 @@ function move(gameState) {
   // } else if (myHead.y-1 < 0) {
   //   isMoveSafe.down = false;
   // }
-  if (myHead.x + 1 >= boardWidth) {
+  if (myHead.x + 1 > boardWidth) {
     isMoveSafe.left = false;
   } else if (myHead.x - 1 < 0) {
     isMoveSafe.right = false;
   }
 
-  if (myHead.y + 1 >= boardHeight) {
+  if (myHead.y + 1 > boardHeight) {
     isMoveSafe.up = false;
   } else if (myHead.y - 1 < 0) {
     isMoveSafe.down = false;
