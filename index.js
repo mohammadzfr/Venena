@@ -68,8 +68,8 @@ function move(gameState) {
   }
 
   // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
-  boardWidth = gameState.board.width;
-  boardHeight = gameState.board.height;
+  // boardWidth = gameState.board.width;
+  // boardHeight = gameState.board.height;
 
   // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
   // myBody = gameState.you.body;
