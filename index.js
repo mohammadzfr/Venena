@@ -97,7 +97,7 @@ function move(gameState) {
   );
 
   // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
-  myBody = gameState.you.body;
+  const myBody = gameState.you.body;
   console.log("Body: ", myBody);
 
   // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
