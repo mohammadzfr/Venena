@@ -70,6 +70,20 @@ function move(gameState) {
   // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
   const boardWidth = gameState.board.width;
   const boardHeight = gameState.board.height;
+
+  // Check if the next move is within the boundaries
+  if (myHead.x <= 0) {
+    isMoveSafe.left = false; // Don't move left if at the left edge
+  } else if (myHead.x >= boardWidth - 1) {
+    isMoveSafe.right = false; // Don't move right if at the right edge
+  }
+
+  if (myHead.y <= 0) {
+    isMoveSafe.down = false; // Don't move down if at the bottom edge
+  } else if (myHead.y >= boardHeight - 1) {
+    isMoveSafe.up = false; // Don't move up if at the top edge
+  }
+
   console.log('Current Pos: (', myHead.x, ' ,', myHead.y, ')');
   console.log(
     'All Possible Moves:\nUp: ',
@@ -81,26 +95,6 @@ function move(gameState) {
     '\nRight: ',
     isMoveSafe.right
   );
-  // if (myHead.x+1 > boardWidth) {
-  //   isMoveSafe.right = false;
-  // } else if (myHead.x-1 < 0) {
-  //   isMoveSafe.left = false;
-  // } else if (myHead.y+1 > boardHeight) {
-  //   isMoveSafe.up = false;
-  // } else if (myHead.y-1 < 0) {
-  //   isMoveSafe.down = false;
-  // }
-  if (myHead.x + 1 > boardWidth) {
-    isMoveSafe.right = false;
-  } else if (myHead.x - 1 < 0) {
-    isMoveSafe.left = false;
-  }
-
-  if (myHead.y + 1 > boardHeight) {
-    isMoveSafe.up = false;
-  } else if (myHead.y - 1 < 0) {
-    isMoveSafe.down = false;
-  }
 
   // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
   // myBody = gameState.you.body;
