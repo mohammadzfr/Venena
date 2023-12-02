@@ -20,16 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      # - name: Test SSH Connection
-      #   run: |
-      #     ssh -i ~/.ssh/id_ed25519_GHActions root@mohammadzafar.com 'echo "SSH connection successful"'
-      #   env:
-      #     SSH_PRIVATE_KEY: ${{ secrets.GH_SSH_PRIV_KEY }}
-
-      # - name: Build
-      #   run: npm run build
-
+        
   deploy:
     runs-on: ubuntu-latest
     needs: build
