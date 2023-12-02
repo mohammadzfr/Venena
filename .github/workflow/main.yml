@@ -28,7 +28,6 @@ jobs:
     #     SSH_PRIVATE_KEY: ${{ secrets.GH_SSH_PRIV_KEY }}
 
 
-
       - name: Build
       run: npm run build
 
@@ -40,4 +39,4 @@ jobs:
       run: |
         ssh root@mohammadzafar.com 'cd /Venena && git pull && npm install && nohup npm start > /dev/null 2>&1 &'
       env:
-        SSH_PRIVATE_KEY: ${{ secrets.GH_SSH_PRIV_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
