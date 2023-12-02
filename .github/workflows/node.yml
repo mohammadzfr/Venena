@@ -30,3 +30,4 @@ jobs:
           ssh root@mohammadzafar.com 'cd /Venena && git pull && npm install && nohup npm start > /dev/null 2>&1 &'
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          
