@@ -27,8 +27,8 @@ jobs:
       #   env:
       #     SSH_PRIVATE_KEY: ${{ secrets.GH_SSH_PRIV_KEY }}
 
-      - name: Build
-        run: npm run build
+      # - name: Build
+      #   run: npm run build
 
   deploy:
     runs-on: ubuntu-latest
