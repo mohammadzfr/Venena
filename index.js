@@ -91,6 +91,7 @@ function move(gameState) {
   console.log("Body: ", myBody);
   console.log("Body part count: ", Object.keys(myBody));
   let bodyElements = Object.keys(myBody);
+
   bodyElements.forEach((element) => {
     if (myHead.y + 1 == element.y) {
       isMoveSafe.up = false;
@@ -103,9 +104,6 @@ function move(gameState) {
       isMoveSafe.left = false;
     }
   })
-  for (let i = 0; i < (Object.keys(myBody)).length(); i++) {
-    
-  }
 
   // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
   // opponents = gameState.board.snakes;
