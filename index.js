@@ -91,7 +91,7 @@ function move(gameState) {
   console.log("Body: ", myBody);
   console.log("Body part count: ", Object.keys(myBody));
 
-  for (let i = 0; i < Object.keys(myBody).length(); i++) {
+  for (let i = 0; i < (Object.keys(myBody)).length(); i++) {
     console.log("loop count: ", i);
     if (myHead.y + 1 == myBody[i].y) {
       isMoveSafe.up = false;
