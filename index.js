@@ -103,6 +103,7 @@ function move(gameState) {
     } else if (myHead.x - 1 == element.x) {
       isMoveSafe.left = false;
     }
+    console.log("Element test: ", element);
   })
 
   // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
