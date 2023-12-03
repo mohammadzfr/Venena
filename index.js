@@ -89,7 +89,7 @@ function move(gameState) {
   // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
   const myBody = gameState.you.body;
   console.log("Body: ", myBody);
-  for (let i = 0; i < myBody.length(); i++) {
+  for (let i = 0; i < Object.keys(myBody); i++) {
     if (myHead.y + 1 == myBody[i].y) {
       isMoveSafe.up = false;
     }
