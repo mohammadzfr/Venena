@@ -84,21 +84,25 @@ function move(gameState) {
     isMoveSafe.up = false; // Don't move up if at the top edge
   }
 
-  console.log('Current Pos: (', myHead.x, ' ,', myHead.y, ')');
-  console.log(
-    'All Possible Moves:\nUp: ',
-    isMoveSafe.up,
-    '\nDown: ',
-    isMoveSafe.down,
-    '\nLeft: ',
-    isMoveSafe.left,
-    '\nRight: ',
-    isMoveSafe.right
-  );
+  
 
   // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
   const myBody = gameState.you.body;
   console.log("Body: ", myBody);
+  for (let i = 0; i < myBody.length(); i++) {
+    if (myHead.y + 1 == myBody[i].y) {
+      isMoveSafe.up = false;
+    }
+    if (myHead.y - 1 == myBody[i].y) {
+      isMoveSafe.down = false;
+    }
+    if (myHead.x + 1 == myBody[i].x) {
+      isMoveSafe.right = false;
+    }
+    if (myHead.x - 1 == myBody[i].x) {
+      isMoveSafe.left = false;
+    }
+  }
 
   // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
   // opponents = gameState.board.snakes;
@@ -116,6 +120,17 @@ function move(gameState) {
   // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
   // food = gameState.board.food;
 
+  console.log('Current Pos: (', myHead.x, ' ,', myHead.y, ')');
+  console.log(
+    'All Possible Moves:\nUp: ',
+    isMoveSafe.up,
+    '\nDown: ',
+    isMoveSafe.down,
+    '\nLeft: ',
+    isMoveSafe.left,
+    '\nRight: ',
+    isMoveSafe.right
+  );
   console.log(`MOVE ${gameState.turn}: ${nextMove}`);
   return { move: nextMove };
 }
