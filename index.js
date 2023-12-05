@@ -127,22 +127,6 @@ function move(gameState) {
       }
     }
 
-    if (myHead.x === element.x) {
-      if (myHead.y + 1 === element.y) {
-        isMoveSafe.up = false;
-      } else if (myHead.y - 1 === element.y) {
-        isMoveSafe.down = false;
-      }
-    }
-
-    if (myHead.y === element.y) {
-      if (myHead.x + 1 === element.x) {
-        isMoveSafe.right = false;
-      } else if (myHead.x - 1 === element.x) {
-        isMoveSafe.left = false;
-      }
-    }
-
     console.log('current element search: ', element);
   });
 
@@ -163,7 +147,7 @@ function move(gameState) {
   // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
   // food = gameState.board.food;
 
-  displayDebugInfo(myBody, isMoveSafe);
+  // displayDebugInfo(myBody, isMoveSafe);
   console.log('Current Pos: (', myHead.x, ' ,', myHead.y, ')');
   console.log(
     'All Possible Moves:\nUp: ',
