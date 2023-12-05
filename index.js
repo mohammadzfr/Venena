@@ -89,16 +89,22 @@ function move(gameState) {
   myBody
     // .filter((a) => a[0])
     .map((element) => {
-      if (myHead.y + 1 == element.y) {
-        isMoveSafe.up = false;
-      } else if (myHead.y - 1 == element.y) {
-        isMoveSafe.down = false;
+      if (myBody.x === element.x) {
+        if (myHead.y + 1 == element.y) {
+          isMoveSafe.up = false;
+        } else if (myHead.y - 1 == element.y) {
+          isMoveSafe.down = false;
+        }
       }
-      if (myHead.x + 1 == element.x) {
-        isMoveSafe.right = false;
-      } else if (myHead.x - 1 == element.x) {
-        isMoveSafe.left = false;
+
+      if (myBody.y === element.y) {
+        if (myHead.x + 1 == element.x) {
+          isMoveSafe.right = false;
+        } else if (myHead.x - 1 == element.x) {
+          isMoveSafe.left = false;
+        }
       }
+
       console.log('current element search: ', element);
     });
   console.log('Body: ', myBody);
