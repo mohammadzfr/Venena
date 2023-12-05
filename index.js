@@ -86,54 +86,54 @@ function move(gameState) {
 
   // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
   const myBody = gameState.you.body;
-  // myBody
-  //   // .filter((a) => a[0])
-  //   .map((element) => {
-  //     if (myBody.x === element.x) {
-  //       if (myHead.y + 1 === element.y) {
-  //         isMoveSafe.down = false;
-  //       } else if (myHead.y - 1 === element.y) {
-  //         isMoveSafe.up = false;
-  //       }
-  //     }
-
-  //     if (myBody.y === element.y) {
-  //       if (myHead.x + 1 === element.x) {
-  //         isMoveSafe.right = false;
-  //       } else if (myHead.x - 1 === element.x) {
-  //         isMoveSafe.left = false;
-  //       }
-  //     }
-
-  //     console.log('current element search: ', element);
-  //   });
   console.log('Body: ', myBody);
   console.log('Body part count: ', Object.keys(myBody));
 
-  myBody.forEach((element) => {
-    if (myHead.x === element.x) {
-      if (myHead.y + 1 === element.y) {
+  myBody.forEach((part) => {
+    if (myHead.x === part.x) {
+      if (myHead.y + 1 === part.y) {
         isMoveSafe.up = false;
-      } else if (myHead.y - 1 === element.y) {
+      } else if (myHead.y - 1 === part.y) {
         isMoveSafe.down = false;
       }
     }
 
-    if (myHead.y === element.y) {
-      if (myHead.x + 1 === element.x) {
+    if (myHead.y === part.y) {
+      if (myHead.x + 1 === part.x) {
         isMoveSafe.right = false;
-      } else if (myHead.x - 1 === element.x) {
+      } else if (myHead.x - 1 === part.x) {
         isMoveSafe.left = false;
       }
     }
 
-    console.log('current element search: ', element);
+    console.log('current part search: ', part);
   });
 
   // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
   const opponents = gameState.board.snakes;
   console.log('Opponent locations', opponents);
 
+  opponents.forEach((opponent) => {
+    opponent.body.forEach((oppPart) => {
+      if (myHead.x === oppPart.x) {
+        if (myHead.y + 1 === oppPart.y) {
+          isMoveSafe.up = false;
+        } else if (myHead.y - 1 === oppPart.y) {
+          isMoveSafe.down = false;
+        }
+      }
+  
+      if (myHead.y === oppPart.y) {
+        if (myHead.x + 1 === oppPart.x) {
+          isMoveSafe.right = false;
+        } else if (myHead.x - 1 === oppPart.x) {
+          isMoveSafe.left = false;
+        }
+      }
+      console.log('current oppPart search: ', oppPart);
+    })
+    
+  })
   // Are there any safe moves left?
   const safeMoves = Object.keys(isMoveSafe).filter((key) => isMoveSafe[key]);
   if (safeMoves.length == 0) {
@@ -145,7 +145,7 @@ function move(gameState) {
   const nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
 
   // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
-  // food = gameState.board.food;
+  const food = gameState.board.food;
 
   // displayDebugInfo(myBody, isMoveSafe);
   console.log('Current Pos: (', myHead.x, ' ,', myHead.y, ')');
