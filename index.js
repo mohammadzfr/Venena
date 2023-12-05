@@ -88,8 +88,9 @@ function move(gameState) {
 
   // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
   const myBody = gameState.you.body;
-  console.log("Body: ", myBody);
-  // console.log("Body part count: ", Object.keys(myBody));
+  console.log("Body: ", myBody.map((a) => a.x + a.y));
+  console.log("Body part count: ", Object.keys(myBody));
+
   // let bodyElements = Object.keys(myBody);
 
   // bodyElements.forEach((element) => {
