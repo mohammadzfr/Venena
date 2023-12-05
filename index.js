@@ -93,6 +93,9 @@ function move(gameState) {
 
   // let bodyElements = Object.keys(myBody);
 
+  for (let i = 0; i < myBody; i++) {
+    console.log(myBody[i].x);
+  }
   // bodyElements.forEach((element) => {
   //   if (myHead.y + 1 == element.y) {
   //     isMoveSafe.up = false;
