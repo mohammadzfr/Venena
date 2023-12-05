@@ -91,9 +91,9 @@ function move(gameState) {
     .map((element) => {
       if (myBody.x == element.x) {
         if (myHead.y + 1 == element.y) {
-          isMoveSafe.up = false;
-        } else if (myHead.y - 1 == element.y) {
           isMoveSafe.down = false;
+        } else if (myHead.y - 1 == element.y) {
+          isMoveSafe.up = false;
         }
       }
 
