@@ -89,7 +89,7 @@ function move(gameState) {
   myBody
     // .filter((a) => a[0])
     .map((element) => {
-      if (myBody.x === element.x) {
+      if (myBody.x == element.x) {
         if (myHead.y + 1 == element.y) {
           isMoveSafe.up = false;
         } else if (myHead.y - 1 == element.y) {
@@ -97,7 +97,7 @@ function move(gameState) {
         }
       }
 
-      if (myBody.y === element.y) {
+      if (myBody.y == element.y) {
         if (myHead.x + 1 == element.x) {
           isMoveSafe.right = false;
         } else if (myHead.x - 1 == element.x) {
