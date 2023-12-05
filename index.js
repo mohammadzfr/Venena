@@ -99,6 +99,7 @@ function move(gameState) {
       } else if (myHead.x - 1 == element.x) {
         isMoveSafe.left = false;
       }
+      console.log("current element search: ", element);
     });
   console.log('Body: ', myBody);
   console.log('Body part count: ', Object.keys(myBody));
