@@ -114,6 +114,8 @@ function move(gameState) {
   console.log('Opponent locations', opponents);
 
   opponents.forEach((opponent) => {
+    let oppHead = opponent.body[0];
+    console.log("Opponents Head: ", oppHead);
     opponent.body.forEach((oppPart) => {
       if (myHead.x === oppPart.x) {
         if (myHead.y + 1 === oppPart.y) {
