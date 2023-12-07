@@ -113,20 +113,22 @@ function move(gameState) {
   const opponents = gameState.board.snakes;
   
 
+  const dangerousSpots = [];
+
   opponents.forEach((opponent) => {
     if (opponent.id !== gameState.you.id) {
       let oppHead = opponent.body[0];
       console.log('Opponents Head: ', oppHead);
 
-      // Mark positions around the opponent's head as unsafe
-      const unsafeSpots = [
+      // Add positions around the opponent's head to the dangerous spots array
+      const potentialDangerousSpots = [
         { x: oppHead.x, y: oppHead.y + 1 }, // Up
         { x: oppHead.x, y: oppHead.y - 1 }, // Down
         { x: oppHead.x + 1, y: oppHead.y }, // Right
         { x: oppHead.x - 1, y: oppHead.y }, // Left
       ];
 
-      unsafeSpots.forEach((spot) => {
+      potentialDangerousSpots.forEach((spot) => {
         if (
           spot.x >= 0 &&
           spot.x < gameState.board.width &&
@@ -134,11 +136,18 @@ function move(gameState) {
           spot.y < gameState.board.height
         ) {
           // Check if the spot is within the boundaries
-          isMoveSafe[`${spot.x}_${spot.y}`] = false;
+          dangerousSpots.push(`${spot.x}_${spot.y}`);
         }
       });
     }
   });
+
+  // Check if the next move leads to a dangerous spot
+  const nextMoveKey = `${myHead.x}_${myHead.y}`;
+  if (dangerousSpots.includes(nextMoveKey)) {
+    console.log(`MOVE ${gameState.turn}: Move to dangerous spot avoided! Moving down`);
+    return { move: 'down' };
+  }
   // Are there any safe moves left?
   const safeMoves = Object.keys(isMoveSafe).filter((key) => isMoveSafe[key]);
   if (safeMoves.length == 0) {
