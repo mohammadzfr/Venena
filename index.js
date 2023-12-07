@@ -114,8 +114,11 @@ function move(gameState) {
   console.log('Opponent locations', opponents);
 
   opponents.forEach((opponent) => {
-    let oppHead = opponent.body[0];
-    console.log("Opponents Head: ", oppHead);
+    console.log("opponent id", opponent.id);
+
+    if (opponent.id !== you.id) {
+      let oppHead = opponent.body[0];
+    console.log('Opponents Head: ', oppHead);
     opponent.body.forEach((oppPart) => {
       if (myHead.x === oppPart.x) {
         if (myHead.y + 1 === oppPart.y) {
@@ -124,7 +127,7 @@ function move(gameState) {
           isMoveSafe.down = false;
         }
       }
-  
+
       if (myHead.y === oppPart.y) {
         if (myHead.x + 1 === oppPart.x) {
           isMoveSafe.right = false;
@@ -133,9 +136,12 @@ function move(gameState) {
         }
       }
       console.log('current oppPart search: ', oppPart);
-    })
-    
-  })
+    });
+    }
+    else {
+      console.log("PLayer id!!!");
+    }
+  });
   // Are there any safe moves left?
   const safeMoves = Object.keys(isMoveSafe).filter((key) => isMoveSafe[key]);
   if (safeMoves.length == 0) {
