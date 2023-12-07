@@ -114,32 +114,29 @@ function move(gameState) {
   console.log('Opponent locations', opponents);
 
   opponents.forEach((opponent) => {
-    console.log("opponent id", opponent.id);
-
     if (opponent.id !== gameState.you.id) {
       let oppHead = opponent.body[0];
-    console.log('Opponents Head: ', oppHead);
-    opponent.body.forEach((oppPart) => {
-      if (myHead.x === oppPart.x) {
-        if (myHead.y + 1 === oppPart.y) {
-          isMoveSafe.up = false;
-        } else if (myHead.y - 1 === oppPart.y) {
-          isMoveSafe.down = false;
-        }
-      }
+      console.log('Opponents Head: ', oppHead);
 
-      if (myHead.y === oppPart.y) {
-        if (myHead.x + 1 === oppPart.x) {
-          isMoveSafe.right = false;
-        } else if (myHead.x - 1 === oppPart.x) {
-          isMoveSafe.left = false;
+      // Mark positions around the opponent's head as unsafe
+      const unsafeSpots = [
+        { x: oppHead.x, y: oppHead.y + 1 }, // Up
+        { x: oppHead.x, y: oppHead.y - 1 }, // Down
+        { x: oppHead.x + 1, y: oppHead.y }, // Right
+        { x: oppHead.x - 1, y: oppHead.y }, // Left
+      ];
+
+      unsafeSpots.forEach((spot) => {
+        if (
+          spot.x >= 0 &&
+          spot.x < gameState.board.width &&
+          spot.y >= 0 &&
+          spot.y < gameState.board.height
+        ) {
+          // Check if the spot is within the boundaries
+          isMoveSafe[`${spot.x}_${spot.y}`] = false;
         }
-      }
-      console.log('current oppPart search: ', oppPart);
-    });
-    }
-    else {
-      console.log("PLayer id!!!");
+      });
     }
   });
   // Are there any safe moves left?
