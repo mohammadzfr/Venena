@@ -116,7 +116,7 @@ function move(gameState) {
   opponents.forEach((opponent) => {
     console.log("opponent id", opponent.id);
 
-    if (opponent.id !== you.id) {
+    if (opponent.id !== gameState.you.id) {
       let oppHead = opponent.body[0];
     console.log('Opponents Head: ', oppHead);
     opponent.body.forEach((oppPart) => {
