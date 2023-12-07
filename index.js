@@ -111,10 +111,11 @@ function move(gameState) {
 
   // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
   const opponents = gameState.board.snakes;
-  console.log('Opponent locations', opponents);
+  
 
   opponents.forEach((opponent) => {
     if (opponent.id !== gameState.you.id) {
+      console.log('Opponent locations', opponents);
       let oppHead = opponent.body[0];
       console.log('Opponents Head: ', oppHead);
 
